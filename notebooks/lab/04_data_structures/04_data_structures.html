@@ -450,7 +450,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-04-4-dictionaries">Exercise 04.4 (dictionaries)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
 
             </nav>
@@ -463,16 +462,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">otter</span>
-<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;04_data_structures.ipynb&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="exercise-04-1-selecting-and-passing-data-structures">
+  <section id="exercise-04-1-selecting-and-passing-data-structures">
 <h1>Exercise 04.1 (selecting and passing data structures)<a class="headerlink" href="#exercise-04-1-selecting-and-passing-data-structures" title="Permalink to this heading">#</a></h1>
 <p>Given the coordinates of the vertices of a triangle, <span class="math notranslate nohighlight">\((x_0, y_0)\)</span>, <span class="math notranslate nohighlight">\((x_1, y_1)\)</span> and <span class="math notranslate nohighlight">\((x_2, y_2)\)</span>, the area <span class="math notranslate nohighlight">\(A\)</span> of the triangle is given by:
 $<span class="math notranslate nohighlight">\(
@@ -481,15 +471,44 @@ A = \left| \frac{x_0(y_1  - y_2) + x_1(y_2 - y_0) + x_2(y_0 - y_1)}{2} \right|
 There is an old function named `area` that computes the area of a triangle given the coordinates of the vertices as six arguments (\)</span>x<span class="math notranslate nohighlight">\( and \)</span>y$ components of each vertex). The order of the function arguments must be (<code class="docutils literal notranslate"><span class="pre">x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1,</span> <span class="pre">x2,</span> <span class="pre">y2)</span></code>. With six arguments, the likelihood of a user passing arguments in the wrong order is high.</p>
 <p>You have been hired as a Python consultant to rewrite the function for computing the area of a triangle.</p>
 <p>Use an appropriate data structure, e.g. a <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">dict</span></code>, etc,  to develop a new version of the function with a simpler interface (the interface is the arguments that are passed to the function). Add appropriate checks inside your function to validate the input data.<br>
-<strong>HINT:</strong> <li>if the number of input coordinates is not 3, print “incorrect number of coordinates”</li></p>
-<li>if the calculated area is 0, print "invalid coordinates for a triangle"</li><div class="cell docutils container">
+<strong>HINT:</strong> <li>if the number of input coordinates is not 3, print <code class="docutils literal notranslate"><span class="pre">incorrect</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">coordinates</span></code></li><li>if the calculated area is 0, print <code class="docutils literal notranslate"><span class="pre">invalid</span> <span class="pre">coordinates</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">triangle</span></code> </li></p>
+<div class="cell tag_otter_assign_solution_cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># input format</span>
-<span class="c1"># coord = [(x0,y0),(x1,y1),(x2,y2)]</span>
-<span class="c1"># area_triangle(coord)</span>
-<span class="c1"># YOUR CODE HERE</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">area_triangle</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
-    <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN SOLUTION NO PROMPT</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">area_triangle</span><span class="p">(</span><span class="n">coord</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; calculates the area of a triangle &quot;&quot;&quot;</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;incorrect number of coordinates&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+
+  <span class="n">x0</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">y0</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">x1</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">y1</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">x2</span><span class="p">,</span><span class="n">y2</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+  <span class="n">area</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">x0</span><span class="o">*</span><span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">+</span><span class="n">x1</span><span class="o">*</span><span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y0</span><span class="p">)</span><span class="o">+</span><span class="n">x2</span><span class="o">*</span><span class="p">(</span><span class="n">y0</span><span class="o">-</span><span class="n">y1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">area</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;invalid coordinates for a triangle&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+  
+  <span class="k">return</span> <span class="n">area</span>
+<span class="c1"># END SOLUTION</span>
+<span class="sd">&quot;&quot;&quot; # BEGIN PROMPT</span>
+<span class="sd"># input format</span>
+<span class="sd"># coord = [(x0,y0),(x1,y1),(x2,y2)]</span>
+<span class="sd"># area_triangle(coord)</span>
+<span class="sd"># YOUR CODE HERE</span>
+<span class="sd">def area_triangle(...):</span>
+<span class="sd">    ...</span>
+<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># END PROMPT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # BEGIN PROMPT\n# input format\n# coord = [(x0,y0),(x1,y1),(x2,y2)]\n# area_triangle(coord)\n# YOUR CODE HERE\ndef area_triangle(...):\n    ...\n&#39;
 </pre></div>
 </div>
 </div>
@@ -497,7 +516,12 @@ There is an old function named `area` that computes the area of a triangle given
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># should return 4.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
 </pre></div>
 </div>
 </div>
@@ -505,7 +529,12 @@ There is an old function named `area` that computes the area of a triangle given
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
-<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># should print &quot;incorrect number of coordinates&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>incorrect number of coordinates
 </pre></div>
 </div>
 </div>
@@ -513,7 +542,12 @@ There is an old function named `area` that computes the area of a triangle given
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
-<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># should print &quot;incorrect number of coordinates&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>incorrect number of coordinates
 </pre></div>
 </div>
 </div>
@@ -521,14 +555,12 @@ There is an old function named `area` that computes the area of a triangle given
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
-<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">area_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># should print &quot;invalid coordinates for a triangle&quot;</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q1&quot;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>invalid coordinates for a triangle
 </pre></div>
 </div>
 </div>
@@ -542,9 +574,48 @@ A = \left| \frac{1}{2} \sum_{i=0}^{n-1} \left(x_{i} y _{i+1} - x_{i+1} y_{i} \ri
 \)</span><span class="math notranslate nohighlight">\(
 and where \)</span>(x_n, y_n) = (x_0, y_0)$. The vertices should be ordered as you move around the polygon.</p>
 <p>Write a function that computes the area of a simple polygon with an arbitrary number of vertices. Test your function for some simple shapes. Pay careful attention to the range of any loops.</p>
-<div class="cell docutils container">
+<div class="cell tag_otter_assign_solution_cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">polygon_area</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN SOLUTION NO PROMPT</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Compute the area of a polygon&quot;&quot;&quot;</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid number of coordinates to compute an area&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+
+  <span class="n">area</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="c1"># approach 1</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">)):</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">yi</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+      <span class="n">xi_1</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">yi_1</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">xi_1</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">yi_1</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">area</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">xi</span><span class="o">*</span><span class="n">yi_1</span><span class="o">-</span><span class="n">xi_1</span><span class="o">*</span><span class="n">yi</span><span class="p">)</span>
+  <span class="c1"># approach 2</span>
+  <span class="c1"># vertices.append(vertices[0])  # append the first vertex at the end</span>
+  <span class="c1"># for i in range(len(vertices)-1):</span>
+  <span class="c1">#   xi = vertices[i][0]</span>
+  <span class="c1">#   yi = vertices[i][1]</span>
+  <span class="c1">#   xi_1 = vertices[i+1][0]</span>
+  <span class="c1">#   yi_1 = vertices[i+1][1]</span>
+  <span class="c1">#   area += 0.5*(xi*yi_1-xi_1*yi)</span>
+    
+  <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+<span class="c1"># END SOLUTION</span>
+<span class="sd">&quot;&quot;&quot; # BEGIN PROMPT</span>
+<span class="sd">def polygon_area</span>
+<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># END PROMPT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # BEGIN PROMPT\ndef polygon_area\n&#39;
 </pre></div>
 </div>
 </div>
@@ -552,7 +623,12 @@ and where \)</span>(x_n, y_n) = (x_0, y_0)$. The vertices should be ordered as y
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+<span class="n">polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="c1"># should return 4.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
 </pre></div>
 </div>
 </div>
@@ -560,14 +636,12 @@ and where \)</span>(x_n, y_n) = (x_0, y_0)$. The vertices should be ordered as y
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+<span class="n">polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="c1"># should return 16.0</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2&quot;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0
 </pre></div>
 </div>
 </div>
@@ -586,12 +660,32 @@ and where \)</span>(x_n, y_n) = (x_0, y_0)$. The vertices should be ordered as y
 <section id="optional-advanced">
 <h2>Optional (advanced)<a class="headerlink" href="#optional-advanced" title="Permalink to this heading">#</a></h2>
 <p>Try writing a one-line version of this operation using list comprehension and the built-in function <a class="reference external" href="https://docs.python.org/3/library/functions.html#zip"><code class="docutils literal notranslate"><span class="pre">zip</span></code></a>.</p>
-<div class="cell docutils container">
+<div class="cell tag_otter_assign_solution_cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">sum_vector</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
-    <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN SOLUTION NO PROMPT</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Return sum of two vectors&quot;&quot;&quot;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid dimensions of x and y. They should match&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+  
+  <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+  
+  <span class="k">return</span> <span class="n">z</span>
+<span class="c1"># END SOLUTION</span>
+<span class="sd">&quot;&quot;&quot; # BEGIN PROMPT</span>
+<span class="sd">a = [0, 4.3, -5, 7]</span>
+<span class="sd">b = [-2, 7, -15, 1]</span>
+<span class="sd">def sum_vector(...):</span>
+<span class="sd">    ...</span>
+<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># END PROMPT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # BEGIN PROMPT\na = [0, 4.3, -5, 7]\nb = [-2, 7, -15, 1]\ndef sum_vector(...):\n    ...\n&#39;
 </pre></div>
 </div>
 </div>
@@ -600,14 +694,12 @@ and where \)</span>(x_n, y_n) = (x_0, y_0)$. The vertices should be ordered as y
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">sum_vector</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">sum_vector</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1"># should return [-2, 11.3, -20, 8]</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3&quot;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2, 11.3, -20, 8]
 </pre></div>
 </div>
 </div>
@@ -634,93 +726,146 @@ From the dictionary, produce and print</p>
 <li><p>Find the oldest occupied building, and print the zone and the abbreviation for this building</p></li>
 <li><p>Find the oldest building in a given zone.</p></li>
 </ol>
-<div class="cell docutils container">
+<div class="cell tag_otter_assign_solution_cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the abbreviations for the buildings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN SOLUTION NO PROMPT</span>
 <span class="n">buildings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;</span><span class="p">,</span> 
             <span class="s2">&quot;ALMETRIS DUREN RESIDENCE HALL&quot;</span><span class="p">,</span>
             <span class="s2">&quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;</span><span class="p">,</span>
             <span class="s2">&quot;ATHLETIC FIELDS PAVILION&quot;</span><span class="p">,</span>
             <span class="s2">&quot;ANNA HISS GYMNASIUM&quot;</span><span class="p">]</span>
-<span class="c1"># make a dictionary that maps building names (key) to building abbreviations (value)</span>
-<span class="n">building_abv</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">building_abv</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;</span><span class="p">:</span><span class="s2">&quot;AF2&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;ALMETRIS DUREN RESIDENCE HALL&quot;</span><span class="p">:</span><span class="s2">&quot;ADH&quot;</span> <span class="p">,</span>
+             <span class="s2">&quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;</span><span class="p">:</span><span class="s2">&quot;AF1&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;ATHLETIC FIELDS PAVILION&quot;</span><span class="p">:</span><span class="s2">&quot;AFP&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;ANNA HISS GYMNASIUM&quot;</span><span class="p">:</span><span class="s2">&quot;AHG&quot;</span><span class="p">}</span>
+<span class="n">abv_building</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">abv_building</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">building_abv</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<span class="c1"># make a dictionary that maps building abbreviations (key) to building names (value)</span>
-<span class="c1"># Hint: use building_abv to create the this dictionary. Don&#39;t manually type keys and values...</span>
-<span class="n">abv_building</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">building_year</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ALMETRIS DUREN RESIDENCE HALL&quot;</span><span class="p">:</span>        <span class="mi">2007</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;</span><span class="p">:</span>    <span class="mi">2012</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span>
+                  <span class="s2">&quot;ANNA HISS GYMNASIUM&quot;</span><span class="p">:</span>                 <span class="mi">1930</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION&quot;</span><span class="p">:</span>            <span class="mi">1995</span><span class="p">}</span>
 
-<span class="c1"># make a list of building abbreviations and sort them into alphabetical order</span>
-<span class="c1"># Hint: use the dictionary functions .values() or .keys() to list the values or keys, and then use the function &#39;sorted&#39; to sort the list.</span>
-<span class="n">sorted_abv</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">building_zone</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ALMETRIS DUREN RESIDENCE HALL&quot;</span><span class="p">:</span>        <span class="mi">2</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;</span><span class="p">:</span>    <span class="mi">3</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                  <span class="s2">&quot;ANNA HISS GYMNASIUM&quot;</span><span class="p">:</span>                 <span class="mi">1</span><span class="p">,</span>
+                  <span class="s2">&quot;ATHLETIC FIELDS PAVILION&quot;</span><span class="p">:</span>            <span class="mi">3</span><span class="p">}</span>
+<span class="n">sorted_abv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">building_abv</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">oldest_year</span> <span class="o">=</span> <span class="mi">2050</span>
+<span class="k">for</span> <span class="n">building</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">building_year</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="n">oldest_year</span><span class="p">:</span>
+        <span class="n">old_building</span> <span class="o">=</span> <span class="n">building</span>
+        <span class="n">oldest_year</span> <span class="o">=</span> <span class="n">year</span>
+<span class="n">old_zone</span> <span class="o">=</span> <span class="n">building_zone</span><span class="p">[</span><span class="n">old_building</span><span class="p">]</span>
+<span class="n">old_abv</span> <span class="o">=</span> <span class="n">building_abv</span><span class="p">[</span><span class="n">old_building</span><span class="p">]</span>
 
-<span class="c1"># make a dictionary that maps building names to the years occupied</span>
-<span class="n">building_year</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">oldest_year</span> <span class="o">=</span> <span class="mi">2050</span>
+<span class="k">for</span> <span class="n">building</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">building_year</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">building_zone</span><span class="p">[</span><span class="n">building</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="n">oldest_year</span><span class="p">:</span>
+            <span class="n">old_building2</span> <span class="o">=</span> <span class="n">building</span>
+            <span class="n">oldest_year</span> <span class="o">=</span> <span class="n">year</span>
+<span class="c1"># END SOLUTION</span>
+<span class="sd">&quot;&quot;&quot; # BEGIN PROMPT</span>
+<span class="sd"># find the abbreviations for the buildings</span>
+<span class="sd">buildings = [&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;, </span>
+<span class="sd">            &quot;ALMETRIS DUREN RESIDENCE HALL&quot;,</span>
+<span class="sd">            &quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;,</span>
+<span class="sd">            &quot;ATHLETIC FIELDS PAVILION&quot;,</span>
+<span class="sd">            &quot;ANNA HISS GYMNASIUM&quot;]</span>
+<span class="sd"># make a dictionary that maps building names (key) to building abbreviations (value)</span>
+<span class="sd">building_abv = ...</span>
 
-<span class="c1"># make a dictionary that maps building names to zones</span>
-<span class="n">building_zone</span> <span class="o">=</span> <span class="o">...</span>
+<span class="sd"># make a dictionary that maps building abbreviations (key) to building names (value)</span>
+<span class="sd"># Hint: use building_abv to create the this dictionary. Don&#39;t manually type keys and values...</span>
+<span class="sd">abv_building = ...</span>
 
-<span class="c1"># use the dictionaries above to find the oldest building in the dictionary</span>
-<span class="n">old_building</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">old_zone</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">old_abv</span> <span class="o">=</span> <span class="o">...</span>
+<span class="sd"># make a list of building abbreviations and sort them into alphabetical order</span>
+<span class="sd"># Hint: use the dictionary functions .values() or .keys() to list the values or keys, and then use the function &#39;sorted&#39; to sort the list.</span>
+<span class="sd">sorted_abv = ...</span>
 
-<span class="c1"># use the dictionaries above to find the oldest building in zone 3</span>
-<span class="n">old_building2</span> <span class="o">=</span> <span class="o">...</span>
+<span class="sd"># make a dictionary that maps building names to the years occupied</span>
+<span class="sd">building_year = ...</span>
+
+<span class="sd"># make a dictionary that maps building names to zones</span>
+<span class="sd">building_zone = ...</span>
+
+<span class="sd"># use the dictionaries above to find the oldest building in the dictionary</span>
+<span class="sd">old_building = ...</span>
+<span class="sd">old_zone = ...</span>
+<span class="sd">old_abv = ...</span>
+
+<span class="sd"># use the dictionaries above to find the oldest building in zone 3</span>
+<span class="sd">old_building2 = ...</span>
+<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># END PROMPT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # BEGIN PROMPT\n# find the abbreviations for the buildings\nbuildings = [&quot;ATHLETIC FIELDS PAVILION (EASTSIDE)&quot;, \n            &quot;ALMETRIS DUREN RESIDENCE HALL&quot;,\n            &quot;ATHLETIC FIELDS PAVILION (REHAB)&quot;,\n            &quot;ATHLETIC FIELDS PAVILION&quot;,\n            &quot;ANNA HISS GYMNASIUM&quot;]\n# make a dictionary that maps building names (key) to building abbreviations (value)\nbuilding_abv = ...\n\n# make a dictionary that maps building abbreviations (key) to building names (value)\n# Hint: use building_abv to create the this dictionary. Don\&#39;t manually type keys and values...\nabv_building = ...\n\n# make a list of building abbreviations and sort them into alphabetical order\n# Hint: use the dictionary functions .values() or .keys() to list the values or keys, and then use the function \&#39;sorted\&#39; to sort the list.\nsorted_abv = ...\n\n# make a dictionary that maps building names to the years occupied\nbuilding_year = ...\n\n# make a dictionary that maps building names to zones\nbuilding_zone = ...\n\n# use the dictionaries above to find the oldest building in the dictionary\nold_building = ...\nold_zone = ...\nold_abv = ...\n\n# use the dictionaries above to find the oldest building in zone 3\nold_building2 = ...\n&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_abv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_abv</span> <span class="c1"># should return [&#39;ADH&#39;, &#39;AF1&#39;, &#39;AF2&#39;, &#39;AFP&#39;, &#39;AHG&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ADH&#39;, &#39;AF1&#39;, &#39;AF2&#39;, &#39;AFP&#39;, &#39;AHG&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_building</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_building</span> <span class="c1"># should return &#39;ANNA HISS GYMNASIUM&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ANNA HISS GYMNASIUM&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_abv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_abv</span> <span class="c1"># should return &#39;AHG&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AHG&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_zone</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_zone</span> <span class="c1"># should return 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_building2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_building2</span> <span class="c1"># should return &#39;ATHLETIC FIELDS PAVILION&#39;</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q4&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="submission">
-<h1>Submission<a class="headerlink" href="#submission" title="Permalink to this heading">#</a></h1>
-<p>Make sure you have run all cells in your notebook in order before running the cell below, so that all images/graphs appear in the output. The cell below will generate a zip file for you to submit. <strong>Please save before exporting!</strong></p>
-<p>These are some submission instructions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save your notebook first, then run this cell to export your submission.</span>
-<span class="n">grader</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">run_tests</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ATHLETIC FIELDS PAVILION&#39;
 </pre></div>
 </div>
 </div>
@@ -780,7 +925,6 @@ From the dictionary, produce and print</p>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-04-4-dictionaries">Exercise 04.4 (dictionaries)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
 
   </nav></div>
